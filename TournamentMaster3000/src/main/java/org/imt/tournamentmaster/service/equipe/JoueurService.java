@@ -30,4 +30,9 @@ public class JoueurService {
         return StreamSupport.stream(joueurRepository.findAll().spliterator(), false)
                 .toList();
     }
+
+    @Transactional
+    public Joueur creerJoueur(Joueur joueur) {
+        return joueurRepository.save(joueur);
+    }
 }

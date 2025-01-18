@@ -3,11 +3,9 @@ package org.imt.tournamentmaster.controller.equipe;
 import org.imt.tournamentmaster.model.equipe.Equipe;
 import org.imt.tournamentmaster.service.equipe.EquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,5 +32,11 @@ public class EquipeController {
     @GetMapping
     public List<Equipe> getAll() {
         return equipeService.getAll();
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<Equipe> creerEquipe(@RequestBody Equipe equipe) {
+        Equipe nouvelleEquipe = equipeService.creerEquipe(equipe);
+        return new ResponseEntity<>(nouvelleEquipe, HttpStatus.CREATED);
     }
 }
