@@ -72,7 +72,7 @@ public class ResultatService {
         // Générer le rapport
         rapport.append("Rapport de traitement des résultats :\n");
         rapport.append("Date de traitement : ").append(LocalDateTime.now()).append("\n");
-        rapport.append("Nombre d'événements traités : ").append(nbEvenements).append("\n");
+        rapport.append("Nombre d'événements traités avec succès : ").append(nbEvenements).append("\n");
 
         for (int i = 0; i < resultats.size(); i++) {
             Resultat resultat = resultats.get(i);
