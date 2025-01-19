@@ -99,6 +99,18 @@ public class Match {
         }
     }
 
+    public String getScoreTotal() {
+        int scoreEquipeA = 0;
+        int scoreEquipeB = 0;
+
+        for (Round round : rounds) {
+            scoreEquipeA += round.getScoreA();
+            scoreEquipeB += round.getScoreB();
+        }
+
+        return (scoreEquipeA + " - " + scoreEquipeB);
+    }
+
     @Override
     public String toString() {
         return "Match{" +

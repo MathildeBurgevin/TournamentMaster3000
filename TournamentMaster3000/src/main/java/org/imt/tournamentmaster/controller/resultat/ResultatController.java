@@ -36,8 +36,12 @@ public class ResultatController {
     }
 
     @PostMapping("/news")
-    public ResponseEntity<List<Resultat>> creerResultats(@RequestBody List<Resultat> resultats) {
-        List<Resultat> nouveauxResultats = resultatService.creerResultats(resultats);
-        return new ResponseEntity<>(nouveauxResultats, HttpStatus.CREATED);
+    public ResponseEntity<String> importerResultats(@RequestBody List<Resultat> resultats) {
+        try {
+            String rapport = resultatService.creerResultats(resultats);
+            return ResponseEntity.ok(rapport);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur dans l'importation des résultats.");
+        }
     }
 }
