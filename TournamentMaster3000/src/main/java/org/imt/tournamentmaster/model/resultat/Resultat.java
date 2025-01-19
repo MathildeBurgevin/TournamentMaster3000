@@ -1,6 +1,7 @@
 package org.imt.tournamentmaster.model.resultat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -12,11 +13,10 @@ import java.util.Objects;
 @Entity
 public class Resultat {
 
-    @JsonIgnore
     @Id
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Match match;
 
 

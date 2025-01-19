@@ -33,6 +33,12 @@ public class EquipeService {
 
     @Transactional
     public Equipe creerEquipe(Equipe equipe) {
+        if (equipe.getId() != 0) {
+            Optional<Equipe> equipeExistante = equipeRepository.findById(equipe.getId());
+            if (equipeExistante != null) {
+                return equipeExistante.get();
+            }
+        }
         return equipeRepository.save(equipe);
     }
 }

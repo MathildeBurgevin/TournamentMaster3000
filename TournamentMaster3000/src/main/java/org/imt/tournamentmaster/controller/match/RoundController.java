@@ -3,11 +3,9 @@ package org.imt.tournamentmaster.controller.match;
 import org.imt.tournamentmaster.model.match.Round;
 import org.imt.tournamentmaster.service.match.RoundService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,5 +37,11 @@ public class RoundController {
     @GetMapping("/max/{scoreA}")
     public List<Round> getMaxScore(@PathVariable int scoreA) {
        return roundService.getByScoreAGreaterThanEqual(scoreA);
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<Round> creerRound(@RequestBody Round round) {
+        Round nouveauRound = roundService.creerRound(round);
+        return new ResponseEntity<>(nouveauRound, HttpStatus.CREATED);
     }
 }

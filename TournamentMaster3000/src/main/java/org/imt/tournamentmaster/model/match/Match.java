@@ -11,17 +11,18 @@ import java.util.Objects;
 @Table(name = "`match`")
 public class Match {
 
-    @JsonIgnore
     @Id
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "equipea_id")
     private Equipe equipeA;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "equipeb_id")
     private Equipe equipeB;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Round> rounds; // Set est un type de collection, on va éviter les confusions et appeler ça un "round"
 
     private Status status;

@@ -3,6 +3,7 @@ package org.imt.tournamentmaster.controller.match;
 import org.imt.tournamentmaster.model.match.Match;
 import org.imt.tournamentmaster.service.match.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +32,11 @@ public class MatchController {
     @GetMapping
     public List<Match> getAll() {
         return matchService.getAll();
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<Match> creerMatch(@RequestBody Match match) {
+        Match nouveauMatch = matchService.creerMatch(match);
+        return new ResponseEntity<>(nouveauMatch, HttpStatus.CREATED);
     }
 }

@@ -1,5 +1,6 @@
 package org.imt.tournamentmaster.service.match;
 
+import org.imt.tournamentmaster.model.equipe.Equipe;
 import org.imt.tournamentmaster.model.match.Round;
 import org.imt.tournamentmaster.repository.match.RoundRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,10 @@ public class RoundService {
     @Transactional(readOnly = true)
     public List<Round> getByScoreAGreaterThanEqual(int scoreA) {
         return roundRepository.findByScoreAGreaterThanEqual(scoreA);
+    }
+
+    @Transactional
+    public Round creerRound(Round round) {
+        return roundRepository.save(round);
     }
 }

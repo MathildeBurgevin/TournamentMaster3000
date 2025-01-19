@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -29,5 +30,18 @@ public class ResultatService {
     public List<Resultat> getAll() {
         return StreamSupport.stream(resultatRepository.findAll().spliterator(), false)
                 .toList();
+    }
+
+    @Transactional
+    public List<Resultat> creerResultats(List<Resultat> resultats) {
+        if (resultats == null || resultats.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<Resultat> resultatsEnregistres = new ArrayList<>();
+        for (Resultat resultat : resultats) {
+            resultatsEnregistres.add(resultatRepository.save(resultat));
+        }
+        return resultatsEnregistres;
     }
 }
